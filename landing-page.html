@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pivot AI - Get AI-Ready in 3 Months</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary: #0f0f0f;
+            --accent: #ff6b35;
+            --accent-light: #ff8c5a;
+            --secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --bg-dark: #0a0a0a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a0f1f 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .accent-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Sora', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 120px auto;
+            padding: 0 20px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 60px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            background: rgba(255, 107, 53, 0.05);
+            transform: translateY(-8px);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Syllabus Section */
+        .syllabus {
+            background: rgba(255, 107, 53, 0.05);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 60px 40px;
+            border-radius: 12px;
+            margin-bottom: 80px;
+        }
+
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .syllabus-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .syllabus-item h4 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .syllabus-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .stat {
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 700;
+            font-family: 'Space Mono', monospace;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Coming Soon Section */
+        .coming-soon {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px dashed rgba(255, 107, 53, 0.4);
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .coming-soon h2 {
+            font-size: 2.5rem;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .coming-soon p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .email-input-group {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        .email-input-group input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Sora', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .email-input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .email-input-group input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 20px;
+            }
+
+            h1 {
+                margin-bottom: 16px;
+            }
+
+            .subtitle {
+                margin-bottom: 30px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .email-input-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">Coming Soon</div>
+            <h1>Get <span class="accent-text">AI-Ready</span> in 3 Months</h1>
+            <p class="subtitle">Master the AI skills companies actually need. Async learning designed for career pivots.</p>
+            
+            <div class="cta-group">
+                <button class="btn btn-primary" onclick="scrollToEmail()">Join Waitlist</button>
+                <button class="btn btn-secondary" onclick="scrollToFeatures()">Learn More</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">3<span style="font-size: 0.6em;">MO</span></div>
+                    <div class="stat-label">To AI Ready</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Core Skills</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Career Impact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="section-label">Why Pivot AI</div>
+        <h2 class="section-title">Built for Career Changers</h2>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast-Track Learning</h3>
+                <p>No fluff. Just the AI fundamentals and business skills you need to pivot, delivered in 12 weeks.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Clear Syllabus</h3>
+                <p>Follow a structured roadmap of skills and projects. Know exactly what you're learning and why.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <h3>Hands-On Projects</h3>
+                <p>Build real AI-powered solutions. Portfolio pieces that show employers what you can do.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Career-Focused</h3>
+                <p>Every module designed around actual job requirements. Learn what hiring managers want.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Fully Async</h3>
+                <p>Learn on your schedule. Keep your current job while you pivot. No rigid class times.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Global Community</h3>
+                <p>Connect with peers making the same pivot. Share wins, troubleshoot challenges together.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-label">The Program</div>
+        <h2 class="section-title">Your 12-Week Roadmap</h2>
+
+        <div class="syllabus">
+            <h3 style="margin-bottom: 8px;">Core Syllabus</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">Master AI fundamentals, business strategy, and real-world application in parallel tracks.</p>
+
+            <div class="syllabus-grid">
+                <div class="syllabus-item">
+                    <h4>AI Fundamentals</h4>
+                    <p>LLMs, prompt engineering, model capabilities and limitations</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Business Strategy</h4>
+                    <p>How to apply AI to real business problems and value creation</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Technical Basics</h4>
+                    <p>Python, APIs, data workflows (no prior coding needed)</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>AI Implementation</h4>
+                    <p>Building AI tools, automation, and integration into workflows</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Industry Deep-Dives</h4>
+                    <p>How AI transforms marketing, operations, finance, product, and more</p>
+                </div>
+                <div class="syllabus-item">
+                    <h4>Career Positioning</h4>
+                    <p>Portfolio building, interview prep, and job search strategy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="coming-soon" id="coming-soon">
+            <h2>Ready to Pivot?</h2>
+            <p>Join the waitlist. We're launching in Spring 2025.</p>
+
+            <div class="email-input-group">
+                <input type="email" placeholder="your@email.com" id="emailInput" required>
+                <button class="btn btn-primary" onclick="submitEmail()">Notify Me</button>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-secondary);">No spam. Just updates when we launch.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Pivot AI. Get ready for tomorrow's opportunities.</p>
+    </footer>
+
+    <script>
+        function scrollToEmail() {
+            document.getElementById('coming-soon').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('emailInput').focus();
+        }
+
+        function scrollToFeatures() {
+            document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitEmail() {
+            const email = document.getElementById('emailInput').value;
+            if (email) {
+                alert(`Thanks! We'll notify ${email} when we launch.`);
+                document.getElementById('emailInput').value = '';
+            } else {
+                alert('Please enter a valid email.');
+            }
+        }
+
+        // Optional: Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-on-scroll');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
